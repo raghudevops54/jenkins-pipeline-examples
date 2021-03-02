@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Hello') {
       steps {
-        sh 'sleep 10'
+        sh 'false'
       }
     }
 
