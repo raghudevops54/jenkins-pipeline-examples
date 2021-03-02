@@ -20,7 +20,7 @@ pipeline {
       slackSend channel: '#random', message: 'Hello'
     }
     failure {
-      slackSend channel: '#random', message: 'Failed Job'
+      slackSend channel: '#devopscom', message: 'Failed Job'
     }
   }
 
