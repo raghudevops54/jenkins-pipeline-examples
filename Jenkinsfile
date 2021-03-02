@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Hello') {
       steps {
-        sh 'sleep 1000'
+        sh 'sleep 30'
       }
     }
 
@@ -15,8 +15,8 @@ pipeline {
     }
   }
 
-  post {
-    always {
+  aborted {
+     {
       slackSend channel: '#random', message: 'Hello'
     }
   }
