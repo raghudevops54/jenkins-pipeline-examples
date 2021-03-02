@@ -19,6 +19,9 @@ pipeline {
     aborted {
       slackSend channel: '#random', message: 'Hello'
     }
+    failure {
+      slackSend channel: '#random', message: 'Failed Job'
+    }
   }
 
 }
