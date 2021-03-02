@@ -1,18 +1,24 @@
 pipeline {
   agent any
+
   stages {
     stage('Hello') {
       steps {
-        sh 'hostname'
-        slackSend channel: '#random', message: 'Hello'
+        sh 'sleep 1'
       }
     }
 
     stage('Hello1') {
       steps {
         echo 'hello world 1'
-        slackSend channel: '#random', message: 'Hello'
       }
     }
   }
+
+  post {
+    always {
+      slackSend channel: '#random', message: 'Hello'
+    }
+  }
+
 }
