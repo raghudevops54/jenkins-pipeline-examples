@@ -1,10 +1,14 @@
 pipeline {
   agent any
 
+  environment {
+    URL = "global.example.com"
+  }
+
   stages {
     stage('Hello') {
       steps {
-        sh 'false'
+        sh 'echo ${URL}'
       }
     }
 
@@ -20,7 +24,7 @@ pipeline {
       slackSend channel: '#random', message: 'Hello'
     }
     failure {
-      slackSend channel: '#devopscom', message: 'Failed Job'
+      slackSend channel: '#devopscom', message: 'Failed Job - URL = ${URL}'
     }
   }
 
