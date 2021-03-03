@@ -81,28 +81,29 @@
 //
 //}
 
-
-matrix {
-  axes {
-    axis {
-      name 'PLATFORM'
-      values 'linux', 'mac', 'windows'
-    }
-  }
-  stages {
-    stage('build') {
-      steps {
-        sh 'echo hello'
+pipeline {
+  matrix {
+    axes {
+      axis {
+        name 'PLATFORM'
+        values 'linux', 'mac', 'windows'
       }
     }
-    stage('test') {
-      steps {
-        sh 'echo hello'
+    stages {
+      stage('build') {
+        steps {
+          sh 'echo hello'
+        }
       }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo hello'
+      stage('test') {
+        steps {
+          sh 'echo hello'
+        }
+      }
+      stage('deploy') {
+        steps {
+          sh 'echo hello'
+        }
       }
     }
   }
