@@ -37,6 +37,9 @@ pipeline {
     }
 
     stage('PROD') {
+      when {
+        environment name: 'PROD', value: true
+      }
       input {
         message "Should we continue?"
         ok "Yes, we should."
