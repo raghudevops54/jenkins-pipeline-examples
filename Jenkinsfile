@@ -3,6 +3,7 @@ pipeline {
 
   environment {
     SURL = "global.example.com"
+    SLACK_TOKEN = credentials('slack')
   }
 
   stages {
@@ -12,6 +13,7 @@ pipeline {
       }
       steps {
         sh 'echo ${SURL}'
+        sh 'echo ${SLACK_TOKEN}'
       }
     }
 
