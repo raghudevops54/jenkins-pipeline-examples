@@ -32,7 +32,7 @@ pipeline {
         SURL = "local.example.com"
       }
       steps {
-       sh 'sleep 100 ; node --version'
+       sh 'node --version'
       }
     }
 
