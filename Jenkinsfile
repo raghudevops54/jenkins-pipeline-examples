@@ -22,6 +22,7 @@ pipeline {
       steps {
         sh 'echo ${SURL}'
         sh 'echo ${SLACK_TOKEN}'
+        sh 'PERSON NAME = ${PERSON}'
       }
     }
 
