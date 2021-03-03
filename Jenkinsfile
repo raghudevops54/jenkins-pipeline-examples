@@ -23,7 +23,7 @@ pipeline {
     aborted {
       slackSend channel: '#random', message: 'Hello'
     }
-    failure {
+    always {
       slackSend channel: '#devopscom', message: 'Failed Job - URL = ${URL}'
     }
   }
