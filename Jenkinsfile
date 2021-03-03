@@ -27,9 +27,6 @@ pipeline {
       slackSend channel: '#random', message: 'Hello'
     }
     always {
-      environment {
-        SURL1 = "post.example.com"
-      }
       slackSend channel: '#random', message: "Failed Job - URL = ${SURL1}"
     }
   }
