@@ -42,11 +42,11 @@ pipeline {
           params.PROD.toBoolean()
         }
       }
-      input {
-        message "Should we continue?"
-        ok "Yes, we should."
-        submitter "admin"
-      }
+//      input {
+//        message "Should we continue?"
+//        ok "Yes, we should."
+//        submitter "admin"
+//      }
       steps {
         echo 'hello world 1'
       }
