@@ -23,6 +23,9 @@ pipeline {
   }
 
   post {
+    environment {
+      SURL = "post.example.comr"
+    }
     aborted {
       slackSend channel: '#random', message: 'Hello'
     }
