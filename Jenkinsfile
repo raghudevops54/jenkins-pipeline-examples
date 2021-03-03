@@ -51,6 +51,25 @@ pipeline {
         echo 'hello world 1'
       }
     }
+
+    stage('Parallel Stages') {
+      parallel {
+        stages {
+          stage('P1') {
+            steps {
+              sh 'sleep 100'
+            }
+          }
+          stage('P2') {
+            steps {
+              sh 'sleep 110'
+            }
+          }
+          
+        }
+      }
+    }
+
   }
 
   post {
