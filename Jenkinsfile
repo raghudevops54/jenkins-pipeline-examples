@@ -38,7 +38,9 @@ pipeline {
 
     stage('PROD') {
       when {
-        environment name: 'PROD', value: true
+        expression {
+          params.PROD
+        }
       }
       input {
         message "Should we continue?"
