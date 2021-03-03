@@ -80,8 +80,6 @@
 //  }
 //
 //}
-
-pipeline {
   matrix {
     axes {
       axis {
@@ -107,4 +105,3 @@ pipeline {
       }
     }
   }
-}
