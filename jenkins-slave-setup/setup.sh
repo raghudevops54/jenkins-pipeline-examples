@@ -21,9 +21,12 @@ if [ -z "${URL}" -o -z "${USERNAME}" -o -z "${PASSWORD}" -o -z "${AGENTNAME}"  ]
   USAGE
 fi
 
-echo All Input Good
-
 # Install Java
+type java &>/dev/null
+if [ $? -ne 0 ]; then
+  echo -e "\e[1;31m Java is missing, Ensure you install it\e[0m"
+  exit 2
+fi
 # Download cli jar file
 # Create Agent with CLI
 # Setup xml file with agent name
