@@ -28,6 +28,12 @@ if [ $? -ne 0 ]; then
   exit 2
 fi
 
+type xq &>/dev/null
+if [ $? -ne 0 ]; then
+  echo -e "\e[1;31m xq is missing, Ensure you install it\e[0m"
+  exit 2
+fi
+
 # Download cli jar file
 curl -f -s -o /tmp/cli.jar  ${URL}/jnlpJars/jenkins-cli.jar
 if [ $? -ne 0 ]; then
@@ -50,7 +56,8 @@ TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/slave-ag
 
 curl -f -s -O ${URL}/jnlpJars/agent.jar
 
-sudo sed -e "s/URL/${URL}/" -e "s/AGENTNAME/${AGENTNAME}/" -e "s/TOKEN/${TOKEN}/" slave.service >/etc/systemd/system/jenkins-slave.service
+sed -i -e "s/URL/${URL}/" -e "s/AGENTNAME/${AGENTNAME}/" -e "s/TOKEN/${TOKEN}/" slave.service
+sudo cp slave.service /etc/systemd/system/jenkins-slave.service
 sudo systemctl daemon-reload
 sudo systemctl enable jenkins-slave
 sudo systemctl start jenkins-slave
