@@ -57,6 +57,8 @@ TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/slave-ag
 curl -f -s -O ${URL}/jnlpJars/agent.jar
 
 sed -i -e "s/URL/${URL}/" -e "s/AGENTNAME/${AGENTNAME}/" -e "s/TOKEN/${TOKEN}/" slave.service
+cat slave.service
+
 sudo cp slave.service /etc/systemd/system/jenkins-slave.service
 sudo systemctl daemon-reload
 sudo systemctl enable jenkins-slave
