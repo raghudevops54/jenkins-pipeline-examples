@@ -35,8 +35,14 @@ if [ $? -ne 0 ]; then
   exit 2
 fi
 
- 
+#
+java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME}
+
+exit 
+
 # Create Agent with CLI
+sed -e "s/AGENTNAME/${AGENTNAME}/" | java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} create-node ${AGENTNAME}
+
 # Setup xml file with agent name
 # Configure Agent with CLI
 # Setup jenkins startup script
