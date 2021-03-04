@@ -41,6 +41,8 @@ if [ $? -ne 0 ]; then
   exit 2
 fi
 
+curl -f -s -o /home/centos/agent.jar ${URL}/jnlpJars/agent.jar
+
 #
 java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME} &>/dev/null
 if [ $? -eq 0 ]; then
@@ -53,8 +55,6 @@ sed -e "s/AGENTNAME/${AGENTNAME}/" node.xml | java -jar /tmp/cli.jar -auth ${USE
 
 # Configure Agent with CLI
 TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/slave-agent.jnlp | sed -e 's|>| |g' -e 's|<| |g' | xargs -n1 | grep argument -A1 | grep -v argument  | head -1)
-
-curl -f -s -o /home/centos/agent.jar ${URL}/jnlpJars/agent.jar
 
 sed -i -e "s|URL|${URL}|" -e "s/AGENTNAME/${AGENTNAME}/" -e "s/TOKEN/${TOKEN}/" slave.service
 cat slave.service
