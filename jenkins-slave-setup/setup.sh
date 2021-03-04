@@ -37,13 +37,22 @@ fi
 
 #
 java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME}
-echo $?
-
-exit
+if [ $? -eq 0 ]; then
+  echo -e "\e[1;33m Agent Already exists, Use another name\e[0m"
+  exit 1
+fi
 
 # Create Agent with CLI
 sed -e "s/AGENTNAME/${AGENTNAME}/" | java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} create-node ${AGENTNAME}
 
-# Setup xml file with agent name
 # Configure Agent with CLI
+TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/slave-agent.jnlp  | sed -e 's/application-desc/appDesc/g' | xq .jnlp.appDesc.argument[0])
+
+curl -f -s -O ${URL}/jnlpJars/agent.jar
+
+sudo sed -e "s/URL/${URL}/" -e "s/AGENTNAME/${AGENTNAME}/" -e "s/TOKEN/${TOKEN}/" slave.service >/etc/systemd/system/jenkins-slave.service
+sudo systemctl daemon-reload
+sudo systemctl enable jenkins-slave
+sudo systemctl start jenkins-slave
+
 # Setup jenkins startup script
