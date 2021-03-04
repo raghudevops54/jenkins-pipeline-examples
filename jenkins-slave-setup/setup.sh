@@ -52,7 +52,7 @@ fi
 sed -e "s/AGENTNAME/${AGENTNAME}/" node.xml | java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} create-node ${AGENTNAME}
 
 # Configure Agent with CLI
-TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/slave-agent.jnlp  | sed -e 's/application-desc/appDesc/g' | xq .jnlp.appDesc.argument[0])
+TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} ${URL}/computer/${AGENTNAME}/slave-agent.jnlp | sed -e 's|>| |g' -e 's|<| |g' | xargs -n1 | grep argument -A1 | grep -v argument  | head -1)
 
 curl -f -s -O ${URL}/jnlpJars/agent.jar
 
