@@ -21,13 +21,21 @@ if [ -z "${URL}" -o -z "${USERNAME}" -o -z "${PASSWORD}" -o -z "${AGENTNAME}"  ]
   USAGE
 fi
 
-# Install Java
+# Check Java
 type java &>/dev/null
 if [ $? -ne 0 ]; then
   echo -e "\e[1;31m Java is missing, Ensure you install it\e[0m"
   exit 2
 fi
+
 # Download cli jar file
+curl -f -s -o /tmp/cli.jar  ${URL}/jnlpJars/jenkins-cli.jar
+if [ $? -ne 0 ]; then
+  echo -e "\e[1;31m Unable to Download Jenkins CLI"
+  exit 2
+fi
+
+ 
 # Create Agent with CLI
 # Setup xml file with agent name
 # Configure Agent with CLI
