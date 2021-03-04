@@ -7,7 +7,7 @@
 
 USAGE() {
   echo -e "\e[1;31m Invalid Inputs\e[0m"
-  echo -e "\e1m $0 URL(http://IP:8080) USERNAME PASSWORD\e[0m"
+  echo -e "\e1m $0 URL(http://IP:8080) USERNAME PASSWORD AGENTNAME \e[0m"
   exit 1
 }
 
@@ -15,9 +15,17 @@ USAGE() {
 URL=$1
 USERNAME=$2
 PASSWORD=$3
+AGENTNAME=$4
 
-if [ -z "${URL}" -o -z "${USERNAME}" -o -z "${PASSWORD}"  ]; then
+if [ -z "${URL}" -o -z "${USERNAME}" -o -z "${PASSWORD}" -o -z "${AGENTNAME}"  ]; then
   USAGE
 fi
 
-echo All Good
+echo All Input Good
+
+# Install Java
+# Download cli jar file
+# Create Agent with CLI
+# Setup xml file with agent name
+# Configure Agent with CLI
+# Setup jenkins startup script
