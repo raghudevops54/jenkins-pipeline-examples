@@ -20,3 +20,4 @@ if [ -z "${URL}" -o -z "${USERNAME}" -o -z "${PASSWORD}"  ]; then
   USAGE
 fi
 
+echo All Good
