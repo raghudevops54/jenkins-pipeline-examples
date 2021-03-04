@@ -37,8 +37,9 @@ fi
 
 #
 java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME}
+echo $?
 
-exit 
+exit
 
 # Create Agent with CLI
 sed -e "s/AGENTNAME/${AGENTNAME}/" | java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} create-node ${AGENTNAME}
