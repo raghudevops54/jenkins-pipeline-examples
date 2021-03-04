@@ -46,8 +46,12 @@ curl -f -s -o /home/centos/agent.jar ${URL}/jnlpJars/agent.jar
 #
 java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} get-node ${AGENTNAME} &>/dev/null
 if [ $? -eq 0 ]; then
-  echo -e "\e[1;33m Agent Already exists, Use another name\e[0m"
-  exit 1
+  if [ "$5" = "--force" ]; then
+    java -jar /tmp/cli.jar -auth ${USERNAME}:${PASSWORD} -s ${URL} delete-node ${AGENTNAME} &>/dev/null
+  else
+    echo -e "\e[1;33m Agent Already exists, Use another name\e[0m"
+    exit 1
+  fi
 fi
 
 # Create Agent with CLI
