@@ -3,26 +3,28 @@
 //log.info 'Starting'
 //log.warning 'Nothing to do!'
 
-pipeline {
-  agent any
+//pipeline {
+//  agent any
+//
+//  environment {
+//    URL_TEST = "google.com"
+//  }
+//
+//  parameters {
+//    string(name: 'MESSAGE', defaultValue: '', description: 'Message to Print')
+//  }
+//
+//  stages {
+//
+//    stage('One') {
+//      steps {
+//        script {
+//          log.info "Message = ${MESSAGE}, URL = ${URL_TEST}"
+//        }
+//      }
+//    }
+//
+//  }
+//}
 
-  environment {
-    URL_TEST = "google.com"
-  }
 
-  parameters {
-    string(name: 'MESSAGE', defaultValue: '', description: 'Message to Print')
-  }
-
-  stages {
-
-    stage('One') {
-      steps {
-        script {
-          log.info "Message = ${MESSAGE}, URL = ${URL_TEST}"
-        }
-      }
-    }
-
-  }
-}
